@@ -43,24 +43,24 @@ export class AppComponent {
       })
     }
   
-    mySubmit() {
-      if(this.registerForm.invalid){
-        if( this.registerForm.controls['names'].errors.required || this.registerForm.controls['lastnames'].errors.required || 
-            this.registerForm.controls['mail'].errors.required || this.registerForm.controls['phone'].errors.required){
-              alert(this.message = `Campos Obligatorios`)
-        //   if(this.registerForm.controls['user'].errors.minlength){
-        //     alert(this.message = `El usuario requiere un minimo de 6 carácteres`)
-        //   }
-        //   if(this.registerForm.controls['password'].errors.minlength){
-        //     alert(this.message = `La contraseña requiere un mínimo de 6 y un máximo de 16 carácteres`)
-        //   }
-        // }
-      }
-      else{
-        console.log(this.registerForm.value);
-      }
-    }
-  } 
+  //   mySubmit() {
+  //     if(this.registerForm.invalid){
+  //       if( this.registerForm.controls['names'].errors.required || this.registerForm.controls['lastnames'].errors.required || 
+  //           this.registerForm.controls['mail'].errors.required || this.registerForm.controls['phone'].errors.required){
+  //             alert(this.message = `Campos Obligatorios`)
+  //       //   if(this.registerForm.controls['user'].errors.minlength){
+  //       //     alert(this.message = `El usuario requiere un minimo de 6 carácteres`)
+  //       //   }
+  //       //   if(this.registerForm.controls['password'].errors.minlength){
+  //       //     alert(this.message = `La contraseña requiere un mínimo de 6 y un máximo de 16 carácteres`)
+  //       //   }
+  //       // }
+  //     }
+  //     else{
+  //       console.log(this.registerForm.value);
+  //     }
+  //   }
+  // } 
   
     //FUNCIONES - FIN
 }

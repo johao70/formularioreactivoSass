@@ -57,7 +57,27 @@ body{
         padding: 5px;
     }
 
-    .invalid-feedback{
-        
+    #invalid1{
+        @include invalid_required;
+        top: 46%;
+        left: 50%;
+    }
+
+    #invalid2{
+        @include invalid_required;
+        top: 52%;
+        left: 50%;
+    }
+
+    #invalid3{
+        @include invalid_required;
+        top: 58%;
+        left: 50%;
+    }
+
+    #invalid4{
+        @include invalid_required;
+        top: 63%;
+        left: 50%;
     }
 }

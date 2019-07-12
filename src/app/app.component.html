@@ -1,9 +1,9 @@
 <body>
   <div id="login-section">
-    <div *ngIf="registerForm.controls['names'].errors?.required" class="invalid-feedback"> Nombres obligatorio </div>
-    <div *ngIf="registerForm.controls['lastnames'].errors?.required" class="invalid-feedback"> Apellidos obligatorio </div>
-    <div *ngIf="registerForm.controls['mail'].errors?.required" class="invalid-feedback"> Correo electrónico obligatorio </div>
-    <div *ngIf="registerForm.controls['phone'].errors?.required" class="invalid-feedback"> Teléfono obligatorio </div>
+    <div *ngIf="registerForm.controls['names'].errors?.required" class="invalid-feedback" id="invalid1"> Nombres obligatorio </div>
+    <div *ngIf="registerForm.controls['lastnames'].errors?.required" class="invalid-feedback" id="invalid2"> Apellidos obligatorio </div>
+    <div *ngIf="registerForm.controls['mail'].errors?.required" class="invalid-feedback" id="invalid3"> Correo obligatorio </div>
+    <div *ngIf="registerForm.controls['phone'].errors?.required" class="invalid-feedback" id="invalid4"> Teléfono obligatorio </div>
 
     <div class="login-box">
       <h1>REGISTRARSE</h1>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="textbox">
-          <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('mail').valid}" type="text" placeholder="Correo Electrónico" formControlName="mail">  
+          <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('mail').valid}" type="text" placeholder="Correo" formControlName="mail">  
         </div>
 
         <div class="textbox">
@@ -25,7 +25,7 @@
           </div>
       </form>
 
-      <button (click)="mySubmit()" type="button" class="btn">Enviar</button>
+      <button type="button" class="btn">Enviar</button>
     </div>
   </div>
 </body>
