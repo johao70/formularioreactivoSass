@@ -21,31 +21,23 @@ export class AppComponent {
   phone: string
 
   message: String
-  messageUser: String
-  messagePassword: String
   //DECLARACIONES - FINISH
 
   ngOnInit() {
     this.createregisterForm()
-
-    //PRUEBAS, PRACTICAS - INICIO
-    
-    //PRUEBAS, PRACTICAS - FIN
   }
 
     //FUNCIONES - INICIO
     createregisterForm() {
       this.registerForm = this.fb.group({
-        names: ['', [Validators.required]],
-        lastnames: ['', [Validators.required]],
-        mail: ['', [Validators.required, Validators.pattern('^[a-z0-9_.+-]+@[a-zA-Z0-9-]+.[a-z]+$')]],
-        phone: ['', [Validators.required]]
+        names: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
+        lastnames: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
+        mail: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
+        phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{1,8}')]]
       })
 
     }
 
-    
-  
   //   mySubmit() {
   //     if(this.registerForm.invalid){
   //       if( this.registerForm.controls['names'].errors.required || this.registerForm.controls['lastnames'].errors.required || 
@@ -67,8 +59,9 @@ export class AppComponent {
 
   submit() {
     if(this.registerForm.invalid){
-      console.log(this.registerForm.controls['mail'].errors.pattern)
-      alert(this.registerForm.controls['mail'].errors.pattern)
+      alert(`Complete todos los campos correctamente`)
+    }else{
+      alert(`OK`)
     }
   }
   

@@ -58,3 +58,10 @@
 	color: red;
 	margin: 0 10px;
 }
+
+@mixin errors {
+	@if {
+
+	}
+	@include textbox($colors...)
+}

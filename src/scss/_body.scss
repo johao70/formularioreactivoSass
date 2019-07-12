@@ -2,8 +2,8 @@ body{
     @include text_body;
     margin: 0;
     padding: 0;
-//   background: url(bg.jpg) no-repeat;
-    background: black;
+    background: url($image) no-repeat;
+    // background: black;
     background-size: cover;
 }
 
@@ -45,6 +45,10 @@ body{
         float: left;
         margin: 0 10px;
     }
+
+    .textbox input .form-control{
+        background: white
+    }
       
     .btn{
         @include buttons(map-keys($buttons-colors)...);
@@ -84,6 +88,24 @@ body{
     #invalid5{
         @include invalid_required;
         top: 58%;
+        left: 50%;
+    }
+
+    #invalid6{
+        @include invalid_required;
+        top: 46%;
+        left: 50%;
+    }
+
+    #invalid7{
+        @include invalid_required;
+        top: 52%;
+        left: 50%;
+    }
+
+    #invalid8{
+        @include invalid_required;
+        top: 63%;
         left: 50%;
     }
 

@@ -6,6 +6,9 @@
     <div *ngIf="registerForm.controls['phone'].errors?.required" id="invalid4"> Teléfono obligatorio </div>
 
     <div *ngIf="registerForm.controls['mail'].errors?.pattern" id="invalid5"> Correo invalido </div>
+    <div *ngIf="registerForm.controls['names'].errors?.pattern" id="invalid6"> Nombres invalidos </div>
+    <div *ngIf="registerForm.controls['lastnames'].errors?.pattern" id="invalid7"> Apellidos invalidos </div>
+    <div *ngIf="registerForm.controls['phone'].errors?.pattern" id="invalid8"> Celular invalido </div>
 
     <div class="login-box">
       <h1>REGISTRARSE</h1>
@@ -23,7 +26,7 @@
         </div>
 
         <div class="textbox">
-            <input class="form-control" type="text" placeholder="Teléfono" formControlName="phone">
+            <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
           </div>
       </form>
 
