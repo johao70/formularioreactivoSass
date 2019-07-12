@@ -1,0 +1,39 @@
+@mixin text_body {
+    font-family: $source_titles;
+    font-size: 25px;
+    color: $white;
+}
+
+@mixin buttons ($colors...){
+	@if $buttons-state{
+        width: 100%;
+        border-color: map-get($buttons-colors,nth($colors, 1));
+		@if length($colors) > 1{
+			@for $i from 2 through length($colors){
+				&.#{nth($colors, $i)}{
+                    border-color:map-get($buttons-colors,nth($colors, $i));
+                    color: $white;
+				}
+			}
+		}
+	}@else{
+		display: none;
+	}
+}
+
+@mixin textbox ($colors...){
+	@if $textbox_state{
+        width: 100%;
+        border-color: map-get($color_palette,nth($colors, 1));
+        color: map-get($color_palette,nth($colors, 1));
+		@if length($colors) > 1{
+			@for $i from 2 through length($colors){
+				&.#{nth($colors, $i)}{
+                    border-color:map-get($color_palette,nth($colors, $i));
+				}
+			}
+		}
+	}@else{
+		display: none;
+	}
+}

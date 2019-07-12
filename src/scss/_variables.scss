@@ -1,0 +1,20 @@
+$default_color: #4caf50;
+
+$white: #FFF;
+
+$source_titles: fantasy;
+
+//TAREA
+$textbox_state: true !default;
+$color_palette:(
+    primary: $default_color,
+    secundary:yellow,
+    alert:red,
+);
+
+$buttons-state: true !default;
+$buttons-colors:(
+    primary: $default_color,
+    secundary:yellow,
+    alert:red,
+);

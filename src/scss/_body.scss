@@ -1,0 +1,63 @@
+body{
+    @include text_body;
+    margin: 0;
+    padding: 0;
+//   background: url(bg.jpg) no-repeat;
+    background: black;
+    background-size: cover;
+}
+
+#login-section{
+    .login-box{
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: $white;
+    }
+    
+    .login-box h1{
+        float: left;
+        font-size: 40px;
+        border-bottom: 6px solid;
+        border-color: $default_color;
+        margin-bottom: 50px;
+        padding: 13px 0;
+    }
+    
+    .textbox{
+        @include textbox(map-keys($color_palette)...);
+        overflow: hidden;
+        font-size: 20px;
+        padding: 8px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid;
+    }
+      
+    .textbox input{
+        border: none;
+        outline: none;
+        background: none;
+        color: $white;
+        font-size: 18px;
+        width: 80%;
+        float: left;
+        margin: 0 10px;
+    }
+      
+    .btn{
+        @include buttons(map-keys($buttons-colors)...);
+        border: 2px solid;
+        background: none;
+        cursor: pointer;
+        font-size: 18px;
+        margin: 12px 0;
+        color: $white;
+        padding: 5px;
+    }
+
+    .invalid-feedback{
+        
+    }
+}
