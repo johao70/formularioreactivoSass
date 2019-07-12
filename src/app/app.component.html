@@ -1,31 +1,33 @@
 <body>
   <div id="login-section">
-    <div *ngIf="registerForm.controls['names'].errors?.required" class="invalid-feedback" id="invalid1"> Nombres obligatorio </div>
-    <div *ngIf="registerForm.controls['lastnames'].errors?.required" class="invalid-feedback" id="invalid2"> Apellidos obligatorio </div>
-    <div *ngIf="registerForm.controls['mail'].errors?.required" class="invalid-feedback" id="invalid3"> Correo obligatorio </div>
-    <div *ngIf="registerForm.controls['phone'].errors?.required" class="invalid-feedback" id="invalid4"> Teléfono obligatorio </div>
+    <div *ngIf="registerForm.controls['names'].errors?.required" id="invalid1"> Nombres obligatorio </div>
+    <div *ngIf="registerForm.controls['lastnames'].errors?.required" id="invalid2"> Apellidos obligatorio </div>
+    <div *ngIf="registerForm.controls['mail'].errors?.required" id="invalid3"> Correo obligatorio </div>
+    <div *ngIf="registerForm.controls['phone'].errors?.required" id="invalid4"> Teléfono obligatorio </div>
+
+    <div *ngIf="registerForm.controls['mail'].errors?.pattern" id="invalid5"> Correo invalido </div>
 
     <div class="login-box">
       <h1>REGISTRARSE</h1>
       <form [formGroup]="registerForm" novalidate="">
         <div class="textbox">
-          <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('names').valid}" type="text" placeholder="Nombres" formControlName="names">
+          <input class="form-control" type="text" placeholder="Nombres" formControlName="names">
         </div>
 
         <div class="textbox">
-          <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('lastnames').valid}" type="text" placeholder="Apellidos" formControlName="lastnames">
+          <input class="form-control" type="text" placeholder="Apellidos" formControlName="lastnames">
         </div>
 
         <div class="textbox">
-          <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('mail').valid}" type="text" placeholder="Correo" formControlName="mail">  
+          <input class="form-control" type="text" placeholder="Correo" formControlName="mail">  
         </div>
 
         <div class="textbox">
-            <input class="form-control" [ngClass]="{'is-invalid': !registerForm.get('phone').valid}" type="text" placeholder="Teléfono" formControlName="phone">
+            <input class="form-control" type="text" placeholder="Teléfono" formControlName="phone">
           </div>
       </form>
 
-      <button type="button" class="btn">Enviar</button>
+      <button (click)="submit()" type="button" class="btn">Enviar</button>
     </div>
   </div>
 </body>

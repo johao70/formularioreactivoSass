@@ -38,10 +38,13 @@ export class AppComponent {
       this.registerForm = this.fb.group({
         names: ['', [Validators.required]],
         lastnames: ['', [Validators.required]],
-        mail: ['', [Validators.required, Validators.email]],
+        mail: ['', [Validators.required, Validators.pattern('^[a-z0-9_.+-]+@[a-zA-Z0-9-]+.[a-z]+$')]],
         phone: ['', [Validators.required]]
       })
+
     }
+
+    
   
   //   mySubmit() {
   //     if(this.registerForm.invalid){
@@ -61,6 +64,13 @@ export class AppComponent {
   //     }
   //   }
   // } 
+
+  submit() {
+    if(this.registerForm.invalid){
+      console.log(this.registerForm.controls['mail'].errors.pattern)
+      alert(this.registerForm.controls['mail'].errors.pattern)
+    }
+  }
   
     //FUNCIONES - FIN
 }

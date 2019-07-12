@@ -80,4 +80,11 @@ body{
         top: 63%;
         left: 50%;
     }
+
+    #invalid5{
+        @include invalid_required;
+        top: 58%;
+        left: 50%;
+    }
+
 }
