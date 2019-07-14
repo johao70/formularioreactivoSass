@@ -1,36 +1,52 @@
 <body>
   <div id="login-section">
-    <div *ngIf="registerForm.controls['names'].errors?.required" id="invalid1"> Nombres obligatorio </div>
-    <div *ngIf="registerForm.controls['lastnames'].errors?.required" id="invalid2"> Apellidos obligatorio </div>
-    <div *ngIf="registerForm.controls['mail'].errors?.required" id="invalid3"> Correo obligatorio </div>
-    <div *ngIf="registerForm.controls['phone'].errors?.required" id="invalid4"> Teléfono obligatorio </div>
 
-    <div *ngIf="registerForm.controls['mail'].errors?.pattern" id="invalid5"> Correo invalido </div>
-    <div *ngIf="registerForm.controls['names'].errors?.pattern" id="invalid6"> Nombres invalidos </div>
-    <div *ngIf="registerForm.controls['lastnames'].errors?.pattern" id="invalid7"> Apellidos invalidos </div>
-    <div *ngIf="registerForm.controls['phone'].errors?.pattern" id="invalid8"> Celular invalido </div>
+    {{registerForm.value | json  }}
 
     <div class="login-box">
       <h1>REGISTRARSE</h1>
-      <form [formGroup]="registerForm" novalidate="">
+
+      <form [formGroup]="registerForm">
         <div class="textbox">
           <input class="form-control" type="text" placeholder="Nombres" formControlName="names">
+        </div>
+        <div>
+          <span *ngIf="registerForm.controls['names'].errors?.required" id="errors"> Nombres obligatorios </span>
+          <span *ngIf="registerForm.controls['names'].errors?.pattern" id="errors"> Nombres invalidos </span>
         </div>
 
         <div class="textbox">
           <input class="form-control" type="text" placeholder="Apellidos" formControlName="lastnames">
         </div>
+        <div>
+          <span *ngIf="registerForm.controls['lastnames'].errors?.required" id="errors"> Apellidos obligatorios </span>
+          <span *ngIf="registerForm.controls['lastnames'].errors?.pattern" id="errors"> Apellidos invalidos </span>
+        </div>
 
         <div class="textbox">
           <input class="form-control" type="text" placeholder="Correo" formControlName="mail">  
         </div>
+        <div>
+          <span *ngIf="registerForm.controls['mail'].errors?.required" id="errors"> Correo Electrónico obligatorio </span>
+          <span *ngIf="registerForm.controls['mail'].errors?.pattern" id="errors"> Ingrese un correo electrónico valido </span>
+        </div>
 
         <div class="textbox">
-            <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
+          <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
+          <div formArrayName="alternativePhone">
+            <div *ngFor="let item of alternativePhone.controls; let i=index" [formGroupName]="i">
+              <input class="form-control" type="text" placeholder="Celular (Opcional)" formControlName="alternativePhone">
+            </div>
           </div>
+          <a class="dynamic" type="button" (click)="addAlternativePhone()"><strong>+</strong></a>
+        </div>
+        <div>
+          <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span>
+          <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span>
+        </div>
+        <button (click)="submit()" type="button" class="btn">Enviar</button>
       </form>
 
-      <button (click)="submit()" type="button" class="btn">Enviar</button>
     </div>
   </div>
 </body>

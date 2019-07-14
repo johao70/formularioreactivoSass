@@ -52,16 +52,11 @@
 }
 
 @mixin invalid_required{
-	@include text_body;
+	@include center-horizontal;
+	position: block;
+	text-align: center;
 	font-size: 15px;
-	position: absolute;
+	border-left: 6px solid red;
+	background-color: rgb(175, 175, 175);
 	color: red;
-	margin: 0 10px;
-}
-
-@mixin errors {
-	@if {
-
-	}
-	@include textbox($colors...)
 }

@@ -19,7 +19,6 @@ export class AppComponent {
   lastnames: String
   mail: string
   phone: string
-
   message: String
   //DECLARACIONES - FINISH
 
@@ -27,15 +26,24 @@ export class AppComponent {
     this.createregisterForm()
   }
 
-    //FUNCIONES - INICIO
+    // FUNCIONES - INICIO
     createregisterForm() {
       this.registerForm = this.fb.group({
         names: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
         lastnames: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
         mail: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
-        phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{1,8}')]]
-      })
+        phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{1,8}')]],
+        alternativePhone: this.fb.array([])
+      })   
+    }
 
+    get alternativePhone(){
+      return this.registerForm.get('alternativePhone') as FormArray
+    }
+
+    addAlternativePhone(){
+      const celular = <FormArray>this.registerForm.controls['alternativePhone']
+      celular.push(this.fb.group({alternativePhone: []}))
     }
 
   //   mySubmit() {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 //IMPORTS - INICIO
 import {FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 //IMPORTS - FIN
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     //IMPORTS - INICIO
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     //IMPORTS -FIN
   ],
   providers: [],
