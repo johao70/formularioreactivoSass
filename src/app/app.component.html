@@ -32,14 +32,13 @@
         </div>
 
         <div class="textbox">
-          <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
-          <div formArrayName="phones">
-            <div *ngFor="let item of phones.controls; let i=index" [formGroupName]="i">
-              <input class="form-control" type="text" placeholder="Celular (Opcional)" formControlName="phones">
+            <div formArrayName="phone">
+                <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
+                    <input type="text" class="form-control" formControlName="phones" placeholder="Celular">
+                </div>
             </div>
-            <a class="dynamic" type="button" (click)="addAlternativePhone()"><strong>+</strong></a>
-            <a type="button" (click)="deleteAlternativePhone(i)"><strong>-</strong></a>
-          </div>
+            <a class="dynamic" type="button" (click)="addPhones()"><strong>+</strong></a>
+            <a class="dynamic" type="button" (click)="deletePhones(i)"><strong>-</strong></a>
         </div>
         <div>
           <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span>
