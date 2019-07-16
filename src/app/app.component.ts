@@ -25,10 +25,47 @@ export class AppComponent {
   message: String
   //DECLARACIONES - FINISH
 
+  //CLASE
+  usuarioform: FormGroup                    
+  telefonos: FormArray                                //Declarar como FormArray
+  operadoraClases: String[]
+  //CLASE
+
   ngOnInit() {
     this.createregisterForm(),
     this.examplepatternForm()
+
+    //clase
+    this.crearUsuarioForm()
+    this.operadoraClases = ['Claro','CNT','Movistar','Tuenti']
+    //clase
   }
+
+  //clase
+  crearUsuarioForm(){
+    this.usuarioform = this.fb.group({
+      nombre: ['', [Validators.required]],
+      cedula: ['', [Validators.required]],
+      telefonos: this.fb.array([this.creartelefonoform()])
+    })
+  }
+
+  creartelefonoform(): FormGroup{
+    return this.fb.group({
+      operadora: ['999', [Validators.required]],
+      numero: ['', [Validators.required]]
+    })
+  }
+
+  addTelefonoForm(){
+    this.telefonos = this.usuarioform.get('telefonos') as FormArray
+    this.telefonos.push(this.creartelefonoform())                           //Añado un nuevo grupo de formularios
+  }
+
+  eliminarTelefonoForm(i){
+    this.telefonos.removeAt(i)
+  }
+  //clase
 
     // FUNCIONES - INICIO
     createregisterForm() {
@@ -38,14 +75,16 @@ export class AppComponent {
         lastnames: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
         mail: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
         phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{8}')]],
-        operadora: this.fb.array([this.fb.group({phone2: ['', [Validators.required]]})])
+        operadora: this.fb.array([this.fb.group({
+          phone1: ['', [Validators.required, Validators.pattern('(09)+[0-9]{8}')]],
+          phone2: ['', [Validators.required]]})])
       })
     }
 
     examplepatternForm(){
       this.patternForm = this.fb.group({
         example1: ['', [Validators.pattern('^[a-z-_A-Z0-9ñ]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.](?:[a-z]{2,3})$')]],
-        example2: ['', [Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\s{4,16}$')]]
+        example2: ['', [Validators.pattern('(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{4,16}')]]
       })
     }
 

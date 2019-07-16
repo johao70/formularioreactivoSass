@@ -18,7 +18,7 @@
           </div>
         </div>
         <div>
-          <span *ngIf="registerForm.controls['firstName'].errors?.required" id="errors"> Nombre obligatorios </span>
+          <span *ngIf="registerForm.controls['firstName'].errors?.required" id="errors"> Nombre obligatorio </span>
           <span *ngIf="registerForm.controls['firstName'].errors?.pattern" id="errors"> Nombre invalidos </span>
         </div>
 
@@ -39,20 +39,29 @@
         </div>
 
         <div class="textbox">
-            <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
-            <div formArrayName="operadora">
-              <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
-                <select class="form-control" formControlName="phone2">
-                  <option>Movistar</option>
-                  <option>Claro</option>
-                  <option>Tuenti</option>
-                  <option>CNT</option>
-                </select>
-              </div>
+          <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
+          <select formControlName="phone2">
+            <option>Movistar</option>
+            <option>Claro</option>
+            <option>Tuenti</option>
+            <option>CNT</option>
+          </select>
+
+          <div formArrayName="operadora">
+            <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
+              <input class="form-control" type="text" placeholder="Celular" formControlName="phone1">
+              <select class="form-control" formControlName="phone2">
+                <option>Movistar</option>
+                <option>Claro</option>
+                <option>Tuenti</option>
+                <option>CNT</option>
+              </select>
+            </div>
               <a class="dynamic" type="button" (click)="addPhones()">+</a>
               <a class="dynamic" type="button" (click)="deletePhones(i)">-</a>
-            </div>
+          </div>
         </div>
+
         <div>
           <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span>
           <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span>
@@ -63,11 +72,32 @@
     </div>
   </div>
 
-  <form [formGroup]="patternForm">
-      <input type="text" placeholder="example" formControlName="example1"><br>
+  <!-- <form [formGroup]="patternForm">
+      <input type="text" placeholder="correo" formControlName="example1"><br>
       <span *ngIf="patternForm.controls['example1'].errors?.pattern"> Invalido1 </span>
-      <input type="text" placeholder="example" formControlName="example2"><br>
+      <input type="text" placeholder="password" formControlName="example2"><br>
       <span *ngIf="patternForm.controls['example2'].errors?.pattern"> Invalido2 </span>
+  </form> -->
+
+  <form [formGroup]="usuarioform">
+    <small>Nombre</small>
+    <input formControlName="nombre"><br>
+    <small>Cedula</small>
+    <input formControlName="cedula">
+
+    <div formArrayName="telefonos" *ngFor="let telefono of usuarioform.get('telefonos').controls; let i = index;">
+      <div [formGroupName]="i">
+          <input formGroupName="numero">
+          <select formControlName="operadora">
+            <option value="999">Seleccione operadora...</option>
+            <option *ngFor="let operadoraClase of operadoraClases; let j = index;" value={{j}}>
+              {{operadoraClase}}
+            </option>
+          </select>
+          <button (click)="eliminarTelefonoForm(i)">X</button>
+      </div>
+    </div>
+    <button (click)="addTelefonoForm()">+</button>
   </form>
 </body>
 
