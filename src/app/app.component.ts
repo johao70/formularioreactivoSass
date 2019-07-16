@@ -15,10 +15,12 @@ export class AppComponent {
 
   //DECLARACIONES - BEGIN
   registerForm: FormGroup
-  names: String
+  firstName: String
+  secondName: String[]
   lastnames: String
   mail: string
-  phone: string[]
+  phone: string
+  operadora: String[]
   message: String
   //DECLARACIONES - FINISH
 
@@ -29,25 +31,41 @@ export class AppComponent {
     // FUNCIONES - INICIO
     createregisterForm() {
       this.registerForm = this.fb.group({
-        names: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
+        firstName: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+        secondName: this.fb.array([this.fb.group({name2: ['']})]),
         lastnames: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$')]],
         mail: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
-        phone: this.fb.array([this.fb.group({phones: ['', [Validators.required, Validators.pattern('(09)+[0-9]{1,8}')]]})])
+        phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{8}')]],
+        operadora: this.fb.array([this.fb.group({phone2: ['', [Validators.required]]})])
       })
     }
 
     get getPhones(){
-      return this.registerForm.get('phone') as FormArray
+      return this.registerForm.get('operadora') as FormArray
+    }
+
+    get getSecondName(){
+      return this.registerForm.get('secondName') as FormArray
     }
 
     addPhones(){
-      const celular = <FormArray>this.registerForm.controls['phone']
-      celular.push(this.fb.group({phones:[]}))
+      const celular = <FormArray>this.registerForm.controls['operadora']
+      celular.push(this.fb.group({phone2:[]}))
+    }
+
+    addSecondName(){
+      const addName = <FormArray>this.registerForm.controls['secondName']
+      addName.push(this.fb.group({name2:[]}))
     }
 
     deletePhones(value){
-      const celular = <FormArray>this.registerForm.controls['phone']
+      const celular = <FormArray>this.registerForm.controls['operadora']
       celular.removeAt(value)
+    }
+
+    deleteSecondName(value){
+      const removeName = <FormArray>this.registerForm.controls['secondName']
+      removeName.removeAt(value)
     }
 
   submit() {

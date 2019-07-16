@@ -8,11 +8,18 @@
 
       <form [formGroup]="registerForm">
         <div class="textbox">
-          <input class="form-control" type="text" placeholder="Nombres" formControlName="names">
+          <input class="form-control" type="text" placeholder="Primer Nombre" formControlName="firstName">
+          <!-- <a class="dynamic" type="button" (click)="addSecondName()">+</a>
+          <a class="dynamic" type="button" (click)="deleteSecondName(i)">-</a> -->
+          <div formArrayName="secondName">
+              <div *ngFor="let item of getSecondName.controls; let i=index" [formGroupName]="i">
+                <input type="text" formControlName="name2" placeholder="Segundo Nombre (Opcional)">
+              </div>
+          </div>
         </div>
         <div>
-          <span *ngIf="registerForm.controls['names'].errors?.required" id="errors"> Nombres obligatorios </span>
-          <span *ngIf="registerForm.controls['names'].errors?.pattern" id="errors"> Nombres invalidos </span>
+          <span *ngIf="registerForm.controls['firstName'].errors?.required" id="errors"> Nombre obligatorios </span>
+          <span *ngIf="registerForm.controls['firstName'].errors?.pattern" id="errors"> Nombre invalidos </span>
         </div>
 
         <div class="textbox">
@@ -32,13 +39,19 @@
         </div>
 
         <div class="textbox">
-            <div formArrayName="phone">
-                <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
-                    <input type="text" class="form-control" formControlName="phones" placeholder="Celular">
-                </div>
+            <input class="form-control" type="text" placeholder="Celular" formControlName="phone">
+            <div formArrayName="operadora">
+              <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
+                <select class="form-control" formControlName="phone2">
+                  <option>Movistar</option>
+                  <option>Claro</option>
+                  <option>Tuenti</option>
+                  <option>CNT</option>
+                </select>
+              </div>
+              <a class="dynamic" type="button" (click)="addPhones()">+</a>
+              <a class="dynamic" type="button" (click)="deletePhones(i)">-</a>
             </div>
-            <a class="dynamic" type="button" (click)="addPhones()"><strong>+</strong></a>
-            <a class="dynamic" type="button" (click)="deletePhones(i)"><strong>-</strong></a>
         </div>
         <div>
           <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span>
