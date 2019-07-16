@@ -87,7 +87,7 @@
 
     <div formArrayName="telefonos" *ngFor="let telefono of usuarioform.get('telefonos').controls; let i = index;">
       <div [formGroupName]="i">
-          <input formGroupName="numero">
+          <input formGroupName="numero"><br>
           <select formControlName="operadora">
             <option value="999">Seleccione operadora...</option>
             <option *ngFor="let operadoraClase of operadoraClases; let j = index;" value={{j}}>
