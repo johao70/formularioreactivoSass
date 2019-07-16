@@ -1,7 +1,7 @@
 <body>
   <div id="login-section">
 
-    {{registerForm.value | json  }}
+    <!-- {{registerForm.value | json  }} -->
 
     <div class="login-box">
       <h1>REGISTRARSE</h1>
@@ -62,6 +62,13 @@
 
     </div>
   </div>
+
+  <form [formGroup]="patternForm">
+      <input type="text" placeholder="example" formControlName="example1"><br>
+      <span *ngIf="patternForm.controls['example1'].errors?.pattern"> Invalido1 </span>
+      <input type="text" placeholder="example" formControlName="example2"><br>
+      <span *ngIf="patternForm.controls['example2'].errors?.pattern"> Invalido2 </span>
+  </form>
 </body>
 
 <router-outlet></router-outlet>
